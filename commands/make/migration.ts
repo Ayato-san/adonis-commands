@@ -11,10 +11,8 @@ import type { CommandOptions } from '@adonisjs/core/types/ace'
 import { stubsRoot as lucidStubsRoot } from '@adonisjs/lucid'
 import type { Database } from '@adonisjs/lucid/database'
 
-import ConfigService from '../../services/config_service.js'
+import { hasLucid, hasPostgres } from '../../src/utilities/package_utility.js'
 import { stubsRoot as localStubsRoot } from '../../stubs/main.js'
-
-// import { isModuleInstalled } from '../../src/is_module_installed.js'
 
 export default class MakeMigration extends BaseCommand {
   static commandName = 'make:migration'
@@ -75,17 +73,16 @@ export default class MakeMigration extends BaseCommand {
     return this.prompt.choice('Select the migrations folder', directories, { name: 'folder' })
   }
 
+  prepare() {
+    if (!hasLucid()) {
+      throw new Error('you need to install "@adonisjs/lucid" before')
+    }
+  }
+
   /**
    * Execute command
    */
   async run(): Promise<void> {
-    const config = new ConfigService(this.app).getConfig()
-    if (!config.modules?.includes('lucid')) {
-      throw new Error(
-        'You need to add "lucid" inside the "modules" in the config file ("config/command.ts")'
-      )
-    }
-
     const db: Database = await this.app.container.make('lucid.db')
     this.connection = this.connection || db.primaryConnectionName
     const connection = db.getRawConnection(this.connection || db.primaryConnectionName)
@@ -117,6 +114,7 @@ export default class MakeMigration extends BaseCommand {
     const fileName = `${prefix}_${action}_${tableName}_table.ts`
     const codemods = await this.createCodemods()
     let stubsRoot = localStubsRoot
+    if (!hasPostgres()) stubsRoot = lucidStubsRoot
     let stubPath = 'make/migration/create.stub'
     if (action === 'alter') {
       stubsRoot = lucidStubsRoot
