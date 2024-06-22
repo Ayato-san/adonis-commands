@@ -1,0 +1,11 @@
+{{{
+  exports({ to: app.configPath('command.ts') })
+}}}
+import env from '#start/env'
+import { defineConfig } from '@ayato-san/adonis-'
+
+const dbConfig = defineConfig({
+  screamingArchitecture: '{{ screaming }}'
+})
+
+export default dbConfig
