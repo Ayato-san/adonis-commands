@@ -22,5 +22,5 @@ export async function configure(command: Configure) {
   }
 
   const codemods = await command.createCodemods()
-  await codemods.makeUsingStub(stubsRoot, 'config/main.stub', { screaming })
+  await codemods.makeUsingStub(stubsRoot, 'config/main.stub', { screaming: !!screaming })
 }

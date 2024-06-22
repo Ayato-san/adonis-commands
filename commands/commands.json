@@ -30,6 +30,35 @@
       "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/action.js"
     },
     {
+      "commandName": "make:enum",
+      "description": "Create a new enum class",
+      "help": "",
+      "namespace": "make",
+      "aliases": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate enum in singular form",
+          "alias": "s"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "argumentName": "name",
+          "required": true,
+          "description": "The name of the enum",
+          "type": "string"
+        }
+      ],
+      "options": {},
+      "filePath": "make/enum.js",
+      "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/enum.js"
+    },
+    {
       "commandName": "make:helper",
       "description": "Create a new helper class",
       "help": "",
