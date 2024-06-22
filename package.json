@@ -39,7 +39,7 @@
     "postbuild": "npm run copy:templates && npm run index:commands",
     "prepublishOnly": "npm run build",
     "release": "npx release-it",
-    "test": "cross-env NODE_DEBUG=adonisjs:core c8 npm run quick:test",
+    "test": "cross-env NODE_DEBUG=adonisjs:core c8 npm run test:quick",
     "test:quick": "node --loader=ts-node/esm --enable-source-maps --experimental-import-meta-resolve bin/test.ts --force-exit",
     "index:commands": "adonis-kit index build/commands"
   },
