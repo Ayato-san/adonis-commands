@@ -14,7 +14,9 @@ export function defineConfig(config: ProjectConfig): ProjectConfig {
  * Shape of config inside the project config file
  */
 export type ProjectConfig = {
+  /** Define if the project use a Screaming Architecture */
   screamingArchitecture: boolean
+  /** Configure the folders generation */
   folders?: FolderConfig
 }
 

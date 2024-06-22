@@ -10,7 +10,6 @@ import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
-import type { ProjectConfig } from '../../src/define_config.js'
 import { stubsRoot } from '../../stubs/main.js'
 
 export default class MakeAction extends BaseCommand {
@@ -60,7 +59,7 @@ export default class MakeAction extends BaseCommand {
   }
 
   async run() {
-    const cmd: ProjectConfig = await this.app.container.make('command.config')
+    const cmd = await this.app.container.make('command.config')
     const entity = this.app.generators.createEntity(this.name)
     const name = this.actionName(entity.name)
     const filePath = this.actionsPath(entity.name, cmd.folders?.app)
