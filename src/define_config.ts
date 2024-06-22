@@ -14,8 +14,6 @@ export function defineConfig(config: ProjectConfig): ProjectConfig {
 export type ProjectConfig = {
   /** Define if the project use a Screaming Architecture */
   screamingArchitecture: boolean
-  /** List of used module */
-  modules?: ModuleType[]
   /** Configure the folders generation */
   folders?: FolderConfig
 }
@@ -27,8 +25,3 @@ export type FolderConfig = {
   /** "start" by default */
   start?: string
 }
-
-/** List of adonis config used by commands */
-export type ModuleType = 'lucid' | 'bouncer'
-
-export const modules: ModuleType[] = ['lucid', 'bouncer']

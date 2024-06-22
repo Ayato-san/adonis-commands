@@ -6,7 +6,6 @@ import { defineConfig } from '@ayato-san/adonis-commands'
 
 const commandConfig = defineConfig({
   screamingArchitecture: {{ screaming }},
-  {{{ modules.length>=1 && `modules: ${"['"+modules.join("', '")+"']"},` }}}
 })
 
 export default commandConfig

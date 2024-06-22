@@ -43,6 +43,9 @@
     "test:quick": "node --loader=ts-node/esm --enable-source-maps --experimental-import-meta-resolve bin/test.ts --force-exit",
     "index:commands": "adonis-kit index build/commands"
   },
+  "dependencies": {
+    "local-pkg": "^0.5.0"
+  },
   "devDependencies": {
     "@adonisjs/assembler": "^7.7.0",
     "@adonisjs/core": "^6.10.1",
