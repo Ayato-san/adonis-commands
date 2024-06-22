@@ -19,6 +19,7 @@
     "build/configure.js",
     "build/index.d.ts",
     "build/index.js",
+    "build/src",
     "build/stubs"
   ],
   "engines": {
