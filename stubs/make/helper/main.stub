@@ -1,0 +1,7 @@
+{{{
+  exports({
+    to: helper.filePath
+  })
+}}}
+export default class {{ helper.name }} {
+}

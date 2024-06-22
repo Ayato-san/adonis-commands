@@ -1,0 +1,7 @@
+{{{
+  exports({
+    to: presenter.filePath
+  })
+}}}
+export default class {{ presenter.name }} {
+}
