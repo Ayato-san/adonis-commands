@@ -16,7 +16,7 @@ export function defineConfig(config: ProjectConfig): ProjectConfig {
  */
 export type ProjectConfig = {
   screamingArchitecture: boolean
-  folders: FolderConfig | undefined
+  folders?: FolderConfig
 }
 
 /**
@@ -24,7 +24,7 @@ export type ProjectConfig = {
  */
 export type FolderConfig = {
   /** "app" by default */
-  app: string | undefined
+  app?: string
   /** "start" by default */
-  start: string | undefined
+  start?: string
 }

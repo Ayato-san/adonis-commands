@@ -22,5 +22,16 @@ export async function configure(command: Configure) {
   }
 
   const codemods = await command.createCodemods()
-  await codemods.makeUsingStub(stubsRoot, 'config/main.stub', { screaming })
+
+  /**
+   * Create the configuration file
+   */
+  await codemods.makeUsingStub(stubsRoot, 'config/main.stub', { screaming: !!screaming })
+
+  /**
+   * Register commands and provider to the rcfile
+   */
+  await codemods.updateRcFile((rcFile) => {
+    rcFile.addCommand('@ayato-san/adonis-commands/commands')
+  })
 }

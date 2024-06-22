@@ -1,11 +1,11 @@
 {{{
   exports({ to: app.configPath('command.ts') })
 }}}
-import env from '#start/env'
-import { defineConfig } from '@ayato-san/adonis-'
+import { defineConfig } from '@ayato-san/adonis-commands'
+//import env from '#start/env'
 
-const dbConfig = defineConfig({
-  screamingArchitecture: '{{ screaming }}'
+const commandConfig = defineConfig({
+  screamingArchitecture: {{ screaming }},
 })
 
-export default dbConfig
+export default commandConfig
