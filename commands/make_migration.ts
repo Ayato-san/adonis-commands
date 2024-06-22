@@ -75,7 +75,7 @@ export default class MakeMigration extends BaseCommand {
    * Execute command
    */
   async run(): Promise<void> {
-    const db: any = await this.app.container.make('lucid.db')
+    const db = await this.app.container.make('lucid.db')
     this.connection = this.connection || db.primaryConnectionName
     const connection = db.getRawConnection(this.connection || db.primaryConnectionName)
 
