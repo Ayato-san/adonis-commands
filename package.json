@@ -11,7 +11,8 @@
   ],
   "exports": {
     ".": "./build/index.js",
-    "./commands": "./build/commands/main.js"
+    "./commands": "./build/commands/main.js",
+    "./provider": "./build/providers/command_provider.js"
   },
   "main": "build/index.js",
   "files": [
