@@ -1,0 +1,5 @@
+{{{
+  exports({ to: enum.filePath })
+}}}
+export const {{ enum.name }} = {
+} as const

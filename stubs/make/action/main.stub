@@ -1,7 +1,5 @@
 {{{
-  exports({
-    to: action.filePath
-  })
+  exports({ to: action.filePath })
 }}}
 export default class {{ action.name }} {
 }
