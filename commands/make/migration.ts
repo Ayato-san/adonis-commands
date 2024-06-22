@@ -8,6 +8,11 @@
  */
 import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
+import { stubsRoot as lucidStubsRoot } from '@adonisjs/lucid'
+import type { Database } from '@adonisjs/lucid/database'
+
+import ConfigService from '../../services/config_service.js'
+import { stubsRoot as localStubsRoot } from '../../stubs/main.js'
 
 // import { isModuleInstalled } from '../../src/is_module_installed.js'
 
@@ -55,70 +60,77 @@ export default class MakeMigration extends BaseCommand {
   declare alter: boolean
 
   /**
-   * Not a valid connection
-   */
-  // private printNotAValidConnection(connection: string) {
-  //   this.logger.error(`"${connection}" is not a valid connection name. Double check "config/database" file`)
-  // }
-
-  /**
    * Returns the directory for creating the migration file
    */
-  // private async getDirectory(migrationPaths?: string[]): Promise<string> {
-  //   if (this.folder) {
-  //     return this.folder
-  //   }
+  private async getDirectory(migrationPaths?: string[]): Promise<string> {
+    if (this.folder) {
+      return this.folder
+    }
 
-  //   let directories = migrationPaths?.length ? migrationPaths : ['database/migrations']
-  //   if (directories.length === 1) {
-  //     return directories[0]
-  //   }
+    const directories = migrationPaths?.length ? migrationPaths : ['database/migrations']
+    if (directories.length === 1) {
+      return directories[0]
+    }
 
-  //   return this.prompt.choice('Select the migrations folder', directories, { name: 'folder' })
-  // }
+    return this.prompt.choice('Select the migrations folder', directories, { name: 'folder' })
+  }
 
   /**
    * Execute command
    */
   async run(): Promise<void> {
-    // const db: any = await this.app.container.make('lucid.db')
-    // this.connection = this.connection || db.primaryConnectionName
-    // const connection = db.getRawConnection(this.connection || db.primaryConnectionName)
-    // /**
-    //  * Invalid database connection
-    //  */
-    // if (!connection) {
-    //   this.printNotAValidConnection(this.connection)
-    //   this.exitCode = 1
-    //   return
-    // }
+    const config = new ConfigService(this.app).getConfig()
+    if (!config.modules?.includes('lucid')) {
+      throw new Error(
+        'You need to add "lucid" inside the "modules" in the config file ("config/command.ts")'
+      )
+    }
+
+    const db: Database = await this.app.container.make('lucid.db')
+    this.connection = this.connection || db.primaryConnectionName
+    const connection = db.getRawConnection(this.connection || db.primaryConnectionName)
+    /**
+     * Invalid database connection
+     */
+    if (!connection) {
+      throw new Error(
+        `"${this.connection}" is not a valid connection name. Double check "config/database" file`
+      )
+    }
     /**
      * Not allowed together, hence we must notify the user about the same
      */
     if (this.alter && this.create) {
       this.logger.warning('--alter and --create cannot be used together. Ignoring --create')
     }
-    // /**
-    //  * Entity to create
-    //  */
-    // const entity = this.app.generators.createEntity(this.name)
-    // /**
-    //  * The folder for creating the schema file
-    //  */
-    // const folder = await this.getDirectory((connection.config.migrations || {}).paths)
-    // const prefix = new Date().getTime()
-    // const action = this.alter ? 'alter' : 'create'
-    // const tableName = this.app.generators.tableName(entity.name)
-    // const fileName = `${prefix}_${action}_${tableName}_table.ts`
-    // const codemods = await this.createCodemods()
-    // await codemods.makeUsingStub(this.app.commandsPath('stubs', 'make'), `migration-${action}.stub`, {
-    //   entity,
-    //   flags: this.parsed.flags,
-    //   migration: {
-    //     tableName,
-    //     folder,
-    //     fileName,
-    //   },
-    // })
+    /**
+     * Entity to create
+     */
+    const entity = this.app.generators.createEntity(this.name)
+    /**
+     * The folder for creating the schema file
+     */
+    const folder = await this.getDirectory((connection.config.migrations || {}).paths)
+    const prefix = new Date().getTime()
+    const action = this.alter ? 'alter' : 'create'
+    const tableName = this.app.generators.tableName(entity.name)
+    const fileName = `${prefix}_${action}_${tableName}_table.ts`
+    const codemods = await this.createCodemods()
+    let stubsRoot = localStubsRoot
+    let stubPath = 'make/migration/create.stub'
+    if (action === 'alter') {
+      stubsRoot = lucidStubsRoot
+      stubPath = 'make/migration/alter.stub'
+    }
+
+    await codemods.makeUsingStub(stubsRoot, stubPath, {
+      entity,
+      flags: this.parsed.flags,
+      migration: {
+        tableName,
+        folder,
+        fileName,
+      },
+    })
   }
 }
