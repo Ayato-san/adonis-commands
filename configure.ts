@@ -33,6 +33,6 @@ export async function configure(command: Configure) {
    */
   await codemods.updateRcFile((rcFile) => {
     rcFile.addCommand('@ayato-san/adonis-commands/commands')
-    rcFile.addProvider('@ayato-san/adonis-commands/providers')
+    rcFile.addProvider('@ayato-san/adonis-commands/provider')
   })
 }
