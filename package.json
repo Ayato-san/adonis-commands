@@ -11,17 +11,16 @@
   ],
   "exports": {
     ".": "./build/index.js",
-    "./commands": "./build/commands/main.js",
-    "./provider": "./build/providers/command_provider.js"
+    "./commands": "./build/commands/main.js"
   },
   "main": "build/index.js",
   "files": [
     "build/commands",
     "build/configure.d.ts",
     "build/configure.js",
+    "build/helpers",
     "build/index.d.ts",
     "build/index.js",
-    "build/providers",
     "build/src",
     "build/stubs"
   ],
