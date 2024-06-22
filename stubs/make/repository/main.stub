@@ -1,0 +1,7 @@
+{{{
+  exports({
+    to: repository.filePath
+  })
+}}}
+export default class {{ repository.name }} {
+}

@@ -1,0 +1,121 @@
+{
+  "commands": [
+    {
+      "commandName": "make:action",
+      "description": "Create a new action class",
+      "help": "",
+      "namespace": "make",
+      "aliases": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate action in singular form",
+          "alias": "s"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "argumentName": "name",
+          "required": true,
+          "description": "The name of the action",
+          "type": "string"
+        }
+      ],
+      "options": {},
+      "filePath": "make/action.js",
+      "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/action.js"
+    },
+    {
+      "commandName": "make:helper",
+      "description": "Create a new helper class",
+      "help": "",
+      "namespace": "make",
+      "aliases": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate helper in singular form",
+          "alias": "s"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "argumentName": "name",
+          "required": true,
+          "description": "The name of the helper",
+          "type": "string"
+        }
+      ],
+      "options": {},
+      "filePath": "make/helper.js",
+      "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/helper.js"
+    },
+    {
+      "commandName": "make:presenter",
+      "description": "Create a new presenter class",
+      "help": "",
+      "namespace": "make",
+      "aliases": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate presenter in singular form",
+          "alias": "s"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "argumentName": "name",
+          "required": true,
+          "description": "The name of the presenter",
+          "type": "string"
+        }
+      ],
+      "options": {},
+      "filePath": "make/presenter.js",
+      "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/presenter.js"
+    },
+    {
+      "commandName": "make:repository",
+      "description": "Create a new repository class",
+      "help": "",
+      "namespace": "make",
+      "aliases": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate repository in singular form",
+          "alias": "s"
+        }
+      ],
+      "args": [
+        {
+          "name": "name",
+          "argumentName": "name",
+          "required": true,
+          "description": "The name of the repository",
+          "type": "string"
+        }
+      ],
+      "options": {},
+      "filePath": "make/repository.js",
+      "absoluteFilePath": "/d/Documents/Typescript/adonis-commands/build/commands/make/repository.js"
+    }
+  ],
+  "version": 1
+}

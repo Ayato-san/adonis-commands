@@ -1,0 +1,7 @@
+{{{
+  exports({
+    to: action.filePath
+  })
+}}}
+export default class {{ action.name }} {
+}
