@@ -6,18 +6,18 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
-
 import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
+import ConfigService from '../../services/config_service.js'
 import { stubsRoot } from '../../stubs/main.js'
 
 export default class MakeAction extends BaseCommand {
   static commandName = 'make:action'
   static description = 'Create a new action class'
 
-  static options: CommandOptions = {}
+  static options: CommandOptions = { startApp: true }
 
   @args.string({ description: 'The name of the action' })
   declare name: string
@@ -55,14 +55,15 @@ export default class MakeAction extends BaseCommand {
   /**
    * Makes path to the actions directory
    */
-  actionsPath(entityName: string): string {
-    return this.app.makePath('app/actions', this.actionFileName(entityName))
+  actionsPath(entityName: string, appPath: string = 'app'): string {
+    return this.app.makePath(appPath, '/actions', this.actionFileName(entityName))
   }
 
   async run() {
+    const config = new ConfigService(this.app).getConfig()
     const entity = this.app.generators.createEntity(this.name)
     const name = this.actionName(entity.name)
-    const filePath = this.actionsPath(entity.name)
+    const filePath = this.actionsPath(entity.name, config.folders?.app)
 
     const codemods = await this.createCodemods()
     await codemods.makeUsingStub(stubsRoot, 'make/action/main.stub', {

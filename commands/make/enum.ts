@@ -10,13 +10,14 @@ import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
+import ConfigService from '../../services/config_service.js'
 import { stubsRoot } from '../../stubs/main.js'
 
 export default class Makeenum extends BaseCommand {
   static commandName = 'make:enum'
   static description = 'Create a new enum class'
 
-  static options: CommandOptions = {}
+  static options: CommandOptions = { startApp: true }
 
   @args.string({ description: 'The name of the enum' })
   declare name: string
@@ -54,14 +55,15 @@ export default class Makeenum extends BaseCommand {
   /**
    * Makes path to the enums directory
    */
-  enumsPath(entityName: string): string {
-    return this.app.makePath('app/enums', this.enumFileName(entityName))
+  enumsPath(entityName: string, appPath: string = 'app'): string {
+    return this.app.makePath(appPath, '/enums', this.enumFileName(entityName))
   }
 
   async run() {
+    const config = new ConfigService(this.app).getConfig()
     const entity = this.app.generators.createEntity(this.name)
     const name = this.enumName(entity.name)
-    const filePath = this.enumsPath(entity.name)
+    const filePath = this.enumsPath(entity.name, config.folders?.app)
 
     const codemods = await this.createCodemods()
     await codemods.makeUsingStub(stubsRoot, 'make/enum/main.stub', {

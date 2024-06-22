@@ -20,6 +20,7 @@
     "build/configure.js",
     "build/index.d.ts",
     "build/index.js",
+    "build/services",
     "build/src",
     "build/stubs"
   ],
