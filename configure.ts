@@ -32,6 +32,6 @@ export async function configure(command: Configure) {
    * Register commands and provider to the rcfile
    */
   await codemods.updateRcFile((rcFile) => {
-    rcFile.addCommand('@ayato-san/adonis-commands')
+    rcFile.addCommand('@ayato-san/adonis-commands/commands')
   })
 }
