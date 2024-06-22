@@ -14,11 +14,12 @@ export async function configure(command: Configure) {
   let screaming: boolean | undefined = command.parsedFlags.screaming
 
   /**
-   * Prompt to select the architecture when --screaming flag
-   * is not used.
+   * Prompt to select the architecture when --screaming flag is not used.
    */
   if (screaming === undefined) {
     screaming = await command.prompt.confirm('Do you want to use screaming architecture?')
+  } else {
+    screaming = !!screaming
   }
 
   const codemods = await command.createCodemods()
@@ -33,6 +34,5 @@ export async function configure(command: Configure) {
    */
   await codemods.updateRcFile((rcFile) => {
     rcFile.addCommand('@ayato-san/adonis-commands/commands')
-    rcFile.addProvider('@ayato-san/adonis-commands/provider')
   })
 }
