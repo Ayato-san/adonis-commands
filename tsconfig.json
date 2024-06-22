@@ -1,0 +1,7 @@
+{
+  "extends": "@ayato-san/tooling-configs/tsconfig.package",
+  "compilerOptions": {
+    "rootDir": "./",
+    "outDir": "./build"
+  }
+}

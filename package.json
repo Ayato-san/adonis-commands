@@ -1,0 +1,71 @@
+{
+  "name": "@ayato-san/adonis-commands",
+  "type": "module",
+  "version": "0.0.1",
+  "description": "",
+  "author": "Ayato-san <ayatosan.pro@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "adonisjs",
+    "adonis"
+  ],
+  "exports": {
+    ".": "./build/index.js"
+  },
+  "main": "build/index.js",
+  "files": [
+    "build"
+  ],
+  "engines": {
+    "node": ">= 20.11.0"
+  },
+  "scripts": {
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
+    "format": "prettier --write .",
+    "typecheck": "tsc --noEmit",
+    "prebuild": "npm run format && npm run lint:fix",
+    "clean": "del-cli build",
+    "copy:templates": "copyfiles \"stubs/**/*.stub\" build",
+    "postbuild": "npm run copy:templates",
+    "prepublishOnly": "npm run build",
+    "release": "npx release-it",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "devDependencies": {
+    "@adonisjs/assembler": "^7.7.0",
+    "@adonisjs/core": "^6.9.1",
+    "@adonisjs/eslint-config": "^1.3.0",
+    "@adonisjs/lucid": "^20.6.0",
+    "@adonisjs/prettier-config": "^1.3.0",
+    "@adonisjs/tsconfig": "^1.3.0",
+    "@ayato-san/tooling-configs": "^1.0.0",
+    "@types/node": "^20.14.2",
+    "copyfiles": "^2.4.1",
+    "del-cli": "^5.1.0",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.1",
+    "release-it": "^17.3.0",
+    "typescript": "^5.4.5"
+  },
+  "eslintConfig": {
+    "extends": "@adonisjs/eslint-config/package"
+  },
+  "prettier": "@ayato-san/tooling-configs/prettier",
+  "publishConfig": {
+    "access": "public",
+    "tag": "latest"
+  },
+  "release-it": {
+    "git": {
+      "commitMessage": "chore(release): ${version}",
+      "tagAnnotation": "v${version}",
+      "tagName": "v${version}"
+    },
+    "github": {
+      "release": true,
+      "releaseName": "v${version}",
+      "web": true
+    }
+  }
+}
