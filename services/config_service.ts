@@ -11,7 +11,7 @@ import { RuntimeException } from '@poppinss/utils'
 
 import type { ProjectConfig } from '../src/define_config.js'
 
-export default class ConfigHelper {
+export default class ConfigService {
   private config?: ProjectConfig
 
   constructor(protected app: ApplicationService) {}

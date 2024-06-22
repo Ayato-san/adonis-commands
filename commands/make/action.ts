@@ -10,7 +10,7 @@ import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
-import ConfigHelper from '../../helpers/config_helper.js'
+import ConfigService from '../../services/config_service.js'
 import { stubsRoot } from '../../stubs/main.js'
 
 export default class MakeAction extends BaseCommand {
@@ -60,7 +60,7 @@ export default class MakeAction extends BaseCommand {
   }
 
   async run() {
-    const config = new ConfigHelper(this.app).getConfig()
+    const config = new ConfigService(this.app).getConfig()
     const entity = this.app.generators.createEntity(this.name)
     const name = this.actionName(entity.name)
     const filePath = this.actionsPath(entity.name, config.folders?.app)
