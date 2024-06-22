@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { BaseCommand, args } from '@adonisjs/core/ace'
+import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
@@ -22,16 +22,27 @@ export default class MakeAction extends BaseCommand {
   @args.string({ description: 'The name of the action' })
   declare name: string
 
+  @flags.boolean({
+    description: 'Generate action in singular form',
+    alias: 's',
+  })
+  declare singular: boolean
+
   /**
    * Converts an entity name to action name
    */
   actionName(entityName: string) {
-    return new StringBuilder(entityName)
-      .removeExtension()
-      .removeSuffix('action')
-      .singular()
-      .pascalCase()
-      .toString()
+    const action = new StringBuilder(entityName).removeExtension().removeSuffix('action')
+
+    if (this.app.generators.singularControllerNames.includes(action.toString().toLowerCase())) {
+      action.singular()
+    } else if (this.singular) {
+      action.singular()
+    } else {
+      action.plural()
+    }
+
+    return action.pascalCase().suffix('Action').toString()
   }
 
   /**

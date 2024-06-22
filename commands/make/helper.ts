@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { BaseCommand, args } from '@adonisjs/core/ace'
+import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
@@ -22,16 +22,27 @@ export default class MakeHelper extends BaseCommand {
   @args.string({ description: 'The name of the helper' })
   declare name: string
 
+  @flags.boolean({
+    description: 'Generate helper in singular form',
+    alias: 's',
+  })
+  declare singular: boolean
+
   /**
    * Converts an entity name to helper name
    */
   helperName(entityName: string) {
-    return new StringBuilder(entityName)
-      .removeExtension()
-      .removeSuffix('helper')
-      .singular()
-      .pascalCase()
-      .toString()
+    const helper = new StringBuilder(entityName).removeExtension().removeSuffix('helper')
+
+    if (this.app.generators.singularControllerNames.includes(helper.toString().toLowerCase())) {
+      helper.singular()
+    } else if (this.singular) {
+      helper.singular()
+    } else {
+      helper.plural()
+    }
+
+    return helper.pascalCase().suffix('Helper').toString()
   }
 
   /**

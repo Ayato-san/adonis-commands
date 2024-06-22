@@ -7,7 +7,7 @@
  * file that was distributed with this source code.
  */
 
-import { BaseCommand, args } from '@adonisjs/core/ace'
+import { BaseCommand, args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
@@ -22,16 +22,27 @@ export default class MakeRepository extends BaseCommand {
   @args.string({ description: 'The name of the repository' })
   declare name: string
 
+  @flags.boolean({
+    description: 'Generate repository in singular form',
+    alias: 's',
+  })
+  declare singular: boolean
+
   /**
    * Converts an entity name to repository name
    */
   repositoryName(entityName: string) {
-    return new StringBuilder(entityName)
-      .removeExtension()
-      .removeSuffix('repository')
-      .singular()
-      .pascalCase()
-      .toString()
+    const repository = new StringBuilder(entityName).removeExtension().removeSuffix('repository')
+
+    if (this.app.generators.singularControllerNames.includes(repository.toString().toLowerCase())) {
+      repository.singular()
+    } else if (this.singular) {
+      repository.singular()
+    } else {
+      repository.plural()
+    }
+
+    return repository.pascalCase().suffix('Repository').toString()
   }
 
   /**
@@ -42,7 +53,7 @@ export default class MakeRepository extends BaseCommand {
   }
 
   /**
-   * Makes path to the repositorys directory
+   * Makes path to the repositories directory
    */
   repositoriesPath(entityName: string): string {
     return this.app.makePath('app/repositories', this.repositoryFileName(entityName))

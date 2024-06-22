@@ -6,7 +6,16 @@
       "help": "",
       "namespace": "make",
       "aliases": [],
-      "flags": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate action in singular form",
+          "alias": "s"
+        }
+      ],
       "args": [
         {
           "name": "name",
@@ -26,7 +35,16 @@
       "help": "",
       "namespace": "make",
       "aliases": [],
-      "flags": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate helper in singular form",
+          "alias": "s"
+        }
+      ],
       "args": [
         {
           "name": "name",
@@ -46,7 +64,16 @@
       "help": "",
       "namespace": "make",
       "aliases": [],
-      "flags": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate presenter in singular form",
+          "alias": "s"
+        }
+      ],
       "args": [
         {
           "name": "name",
@@ -66,7 +93,16 @@
       "help": "",
       "namespace": "make",
       "aliases": [],
-      "flags": [],
+      "flags": [
+        {
+          "name": "singular",
+          "flagName": "singular",
+          "required": false,
+          "type": "string",
+          "description": "Generate repository in singular form",
+          "alias": "s"
+        }
+      ],
       "args": [
         {
           "name": "name",
