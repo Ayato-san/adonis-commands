@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://github.com/Ayato-san/adonis-commands/assets/71392060/a223244f-c617-491c-a5b8-ec08ea452ef4">
+  <img src="https://github.com/Ayato-san/adonis-commands/assets/71392060/cd36b965-5a4f-481a-bf64-8f357c6e5689">
 </p>
 
 ## Features
