@@ -66,7 +66,7 @@ export default class Makeenum extends BaseCommand {
     const codemods = await this.createCodemods()
     await codemods.makeUsingStub(stubsRoot, 'make/enum/main.stub', {
       entity: this.app.generators.createEntity(this.name),
-      enum: { filePath, name },
+      enumeration: { filePath, name },
     })
   }
 }

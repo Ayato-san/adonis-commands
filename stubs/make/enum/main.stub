@@ -1,5 +1,5 @@
 {{{
-  exports({ to: enum.filePath })
+  exports({ to: enumeration.filePath })
 }}}
-export const {{ enum.name }} = {
+export const {{ enumeration.name }} = {
 } as const

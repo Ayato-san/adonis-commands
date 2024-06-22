@@ -10,7 +10,8 @@
     "adonis"
   ],
   "exports": {
-    ".": "./build/index.js"
+    ".": "./build/index.js",
+    "./commands": "./build/commands/main.js"
   },
   "main": "build/index.js",
   "files": [
