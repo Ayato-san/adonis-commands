@@ -5,6 +5,14 @@
   "description": "My custom commands for AdoniJS",
   "author": "Ayato-san <ayatosan.pro@gmail.com>",
   "license": "MIT",
+  "homepage": "https://github.com/Ayato-san/adonis-commands#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Ayato-san/adonis-commands.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Ayato-san/adonis-commands/issues"
+  },
   "keywords": [
     "adonisjs",
     "adonis"
