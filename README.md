@@ -25,18 +25,6 @@ node ace configure @ayato-san/adonis-commands
 
 ### Configure
 
-activate modules :
-
-```ts
-import { defineConfig } from '@ayato-san/adonis-commands'
-
-const commandConfig = defineConfig({
-  modules: ['lucid', 'bouncer'],
-})
-
-export default commandConfig
-```
-
 change folders generation :
 
 ```ts
