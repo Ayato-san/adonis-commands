@@ -1,7 +1,7 @@
 {
   "name": "@ayato-san/adonis-commands",
   "type": "module",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "description": "My custom commands for AdoniJS",
   "author": "Ayato-san <ayatosan.pro@gmail.com>",
   "license": "MIT",
