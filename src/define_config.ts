@@ -6,6 +6,12 @@
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  */
+
+/**
+ * Defines the project configuration.
+ * @param config - The configuration object to define.
+ * @returns The defined project configuration.
+ */
 export function defineConfig(config: ProjectConfig): ProjectConfig {
   return config
 }

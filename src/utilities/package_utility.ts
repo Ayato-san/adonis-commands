@@ -1,34 +1,54 @@
 import { isPackageExists } from 'local-pkg'
 
-function hasSqlite() {
+/** Check if SQLite packages are installed */
+function hasSQLite() {
   return (
-    isPackageExists('@types/luxon') && isPackageExists('better-sqlite3') && isPackageExists('luxon')
+    isPackageExists('@types/luxon') && // Check for TypeScript types for Luxon
+    isPackageExists('better-sqlite3') && // Check for better-sqlite3 package
+    isPackageExists('luxon') // Check for Luxon package
   )
 }
 
-function hasLibsql() {
+/** Check if LibSQL packages are installed */
+function hasLibSQL() {
   return (
-    isPackageExists('@types/luxon') &&
-    isPackageExists('@libsql/sqlite3') &&
-    isPackageExists('sqlite3') &&
-    isPackageExists('luxon')
+    isPackageExists('@types/luxon') && // Check for TypeScript types for Luxon
+    isPackageExists('@libsql/sqlite3') && // Check for LibSQL SQLite3 package
+    isPackageExists('sqlite3') && // Check for sqlite3 package
+    isPackageExists('luxon') // Check for Luxon package
   )
 }
 
-function hasMysql() {
-  return isPackageExists('@types/luxon') && isPackageExists('mysql2') && isPackageExists('luxon')
+/** Check if MySQL packages are installed */
+function hasMySQL() {
+  return (
+    isPackageExists('@types/luxon') && // Check for TypeScript types for Luxon
+    isPackageExists('mysql2') && // Check for mysql2 package
+    isPackageExists('luxon') // Check for Luxon package
+  )
 }
 
-function hasPostgres() {
-  return isPackageExists('@types/luxon') && isPackageExists('pg') && isPackageExists('luxon')
+/** Check if PostgreSQL packages are installed */
+function hasPostgreSQL() {
+  return (
+    isPackageExists('@types/luxon') && // Check for TypeScript types for Luxon
+    isPackageExists('pg') && // Check for pg package
+    isPackageExists('luxon') // Check for Luxon package
+  )
 }
 
-function hasMssql() {
-  return isPackageExists('@types/luxon') && isPackageExists('tedious') && isPackageExists('luxon')
+/** Check if MSSQL packages are installed */
+function hasMSSQL() {
+  return (
+    isPackageExists('@types/luxon') && // Check for TypeScript types for Luxon
+    isPackageExists('tedious') && // Check for tedious package
+    isPackageExists('luxon') // Check for Luxon package
+  )
 }
 
+/** Check if Lucid package is installed */
 function hasLucid() {
-  return isPackageExists('@adonisjs/lucid')
+  return isPackageExists('@adonisjs/lucid') // Check for AdonisJS Lucid package
 }
 
-export { hasLibsql, hasLucid, hasMssql, hasMysql, hasPostgres, hasSqlite }
+export { hasLibSQL, hasLucid, hasMSSQL, hasMySQL, hasPostgreSQL, hasSQLite }

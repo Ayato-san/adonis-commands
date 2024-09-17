@@ -8,4 +8,5 @@
  */
 import { getDirname } from '@poppinss/utils'
 
+/** Get the directory name of the current module */
 export const stubsRoot = getDirname(import.meta.url)

@@ -11,16 +11,13 @@ import type { CommandOptions } from '@adonisjs/core/types/ace'
 import { stubsRoot as lucidStubsRoot } from '@adonisjs/lucid'
 import type { Database } from '@adonisjs/lucid/database'
 
-import { hasLucid, hasPostgres } from '../../src/utilities/package_utility.js'
+import { hasLucid, hasPostgreSQL } from '../../src/utilities/package_utility.js'
 import { stubsRoot as localStubsRoot } from '../../stubs/main.js'
 
 export default class MakeMigration extends BaseCommand {
   static commandName = 'make:migration'
   static description = 'Make a new migration file'
-  static options: CommandOptions = {
-    startApp: true,
-    allowUnknownFlags: true,
-  }
+  static options: CommandOptions = { startApp: true, allowUnknownFlags: true }
 
   /**
    * The name of the migration file. We use this to create the migration
@@ -33,9 +30,7 @@ export default class MakeMigration extends BaseCommand {
    * Choose a custom pre-defined connection. Otherwise, we use the
    * default connection
    */
-  @flags.string({
-    description: 'Select database connection for which to create the migration',
-  })
+  @flags.string({ description: 'Select database connection for which to create the migration' })
   declare connection: string
 
   /**
@@ -114,7 +109,7 @@ export default class MakeMigration extends BaseCommand {
     const fileName = `${prefix}_${action}_${tableName}_table.ts`
     const codemods = await this.createCodemods()
     let stubsRoot = localStubsRoot
-    if (!hasPostgres()) stubsRoot = lucidStubsRoot
+    if (!hasPostgreSQL()) stubsRoot = lucidStubsRoot
     let stubPath = 'make/migration/create.stub'
     if (action === 'alter') {
       stubsRoot = lucidStubsRoot
