@@ -1,5 +1,5 @@
 ---
-ignoreUnless: {{ STALE_BOT }}
+ignoreUnless: {{STALE_BOT}}
 ---
 # Configuration for Lock Threads - https://github.com/dessant/lock-threads-app
 
@@ -7,11 +7,11 @@ ignoreUnless: {{ STALE_BOT }}
 daysUntilLock: 60
 
 # Skip issues and pull requests created before a given timestamp. Timestamp must
-# follow ISO 8601 (`YYYY-MM-DD`). Set to `false` to disable
+# Follow ISO 8601 (`YYYY-MM-DD`). Set to `false` to disable
 skipCreatedBefore: false
 
 # Issues and pull requests with these labels will be ignored. Set to `[]` to disable
-exemptLabels: ['Type: Security']
+exemptLabels: ["Type: Security"]
 
 # Label to add before locking, such as `outdated`. Set to `false` to disable
 lockLabel: false

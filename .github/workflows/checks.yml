@@ -1,0 +1,16 @@
+name: checks
+on:
+  - push
+  - pull_request
+  - workflow_call
+jobs:
+  test:
+    uses: ./.github/workflows/test.yml
+    with:
+      install-npm: true
+
+  lint:
+    uses: ./.github/workflows/lint.yml
+
+  typecheck:
+    uses: ./.github/workflows/typecheck.yml
