@@ -10,35 +10,39 @@ import { AceFactory } from '@adonisjs/core/factories'
 import { test } from '@japa/runner'
 
 import MakeActionCommand from '../../commands/make/action.js'
-import { stubsRoot } from '../../stubs/main.js'
 
-test.group('Make action', () => {
-  test('create action class', async ({ assert, fs }) => {
-    const ace = await new AceFactory().make(fs.baseUrl)
+test.group('Make action', (group) => {
+  group.each.teardown(async () => {
+    delete process.env.ADONIS_ACE_CWD
+  })
+
+  test('make an action', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
     await ace.app.init()
     ace.ui.switchMode('raw')
 
     const command = await ace.create(MakeActionCommand, ['orderShipped'])
     await command.exec()
 
-    const stubs = await ace.app.stubs.create()
-    const stub = await stubs.build('make/action/main.stub', {
-      source: stubsRoot,
-    })
+    command.assertLog('green(DONE:)    create app/actions/order_shippeds_action.ts')
+    await assert.fileContains(
+      'app/actions/order_shippeds_action.ts',
+      'export default class OrderShippedsAction {'
+    )
+  })
 
-    const entity = ace.app.generators.createEntity('orderShipped')
-    const { contents } = await stub.prepare({
-      entity,
-      action: { filePath: command.actionsPath(entity.name), name: command.actionName(entity.name) },
-    })
+  test('make an action singular', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
+    await ace.app.init()
+    ace.ui.switchMode('raw')
 
-    await assert.fileEquals('app/actions/order_shipped.ts', contents)
+    const command = await ace.create(MakeActionCommand, ['orderShipped', '-s'])
+    await command.exec()
 
-    assert.deepEqual(ace.ui.logger.getLogs(), [
-      {
-        message: 'green(DONE:)    create app/actions/order_shipped.ts',
-        stream: 'stdout',
-      },
-    ])
+    command.assertLog('green(DONE:)    create app/actions/order_shipped_action.ts')
+    await assert.fileContains(
+      'app/actions/order_shipped_action.ts',
+      'export default class OrderShippedAction {'
+    )
   })
 })

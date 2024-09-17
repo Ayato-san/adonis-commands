@@ -24,7 +24,7 @@ export default class ConfigService {
     if (this.config) return this.config // Return cached config if available
 
     // Fetches the configuration from the application service
-    this.config = this.app.config.get<ProjectConfig>('command')
+    this.config = this.app.config?.get<ProjectConfig>('command') || { screamingArchitecture: false }
 
     // Throws an error if the configuration is invalid
     if (!this.config) {

@@ -10,38 +10,39 @@ import { AceFactory } from '@adonisjs/core/factories'
 import { test } from '@japa/runner'
 
 import MakePresenterCommand from '../../commands/make/presenter.js'
-import { stubsRoot } from '../../stubs/main.js'
 
-test.group('Make presenter', () => {
-  test('create presenter class', async ({ assert, fs }) => {
-    const ace = await new AceFactory().make(fs.baseUrl)
+test.group('Make presenter', (group) => {
+  group.each.teardown(async () => {
+    delete process.env.ADONIS_ACE_CWD
+  })
+
+  test('make an presenter', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
     await ace.app.init()
     ace.ui.switchMode('raw')
 
     const command = await ace.create(MakePresenterCommand, ['orderShipped'])
     await command.exec()
 
-    const stubs = await ace.app.stubs.create()
-    const stub = await stubs.build('make/presenter/main.stub', {
-      source: stubsRoot,
-    })
+    command.assertLog('green(DONE:)    create app/presenters/order_shippeds_presenter.ts')
+    await assert.fileContains(
+      'app/presenters/order_shippeds_presenter.ts',
+      'export default class OrderShippedsPresenter {'
+    )
+  })
 
-    const entity = ace.app.generators.createEntity('orderShipped')
-    const { contents } = await stub.prepare({
-      entity,
-      presenter: {
-        filePath: command.presentersPath(entity.name),
-        name: command.presenterName(entity.name),
-      },
-    })
+  test('make an presenter singular', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
+    await ace.app.init()
+    ace.ui.switchMode('raw')
 
-    await assert.fileEquals('app/presenters/order_shipped.ts', contents)
+    const command = await ace.create(MakePresenterCommand, ['orderShipped', '-s'])
+    await command.exec()
 
-    assert.deepEqual(ace.ui.logger.getLogs(), [
-      {
-        message: 'green(DONE:)    create app/presenters/order_shipped.ts',
-        stream: 'stdout',
-      },
-    ])
+    command.assertLog('green(DONE:)    create app/presenters/order_shipped_presenter.ts')
+    await assert.fileContains(
+      'app/presenters/order_shipped_presenter.ts',
+      'export default class OrderShippedPresenter {'
+    )
   })
 })

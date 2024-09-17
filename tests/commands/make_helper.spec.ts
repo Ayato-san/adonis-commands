@@ -10,35 +10,39 @@ import { AceFactory } from '@adonisjs/core/factories'
 import { test } from '@japa/runner'
 
 import MakeHelperCommand from '../../commands/make/helper.js'
-import { stubsRoot } from '../../stubs/main.js'
 
-test.group('Make helper', () => {
-  test('create helper class', async ({ assert, fs }) => {
-    const ace = await new AceFactory().make(fs.baseUrl)
+test.group('Make helper', (group) => {
+  group.each.teardown(async () => {
+    delete process.env.ADONIS_ACE_CWD
+  })
+
+  test('make an helper', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
     await ace.app.init()
     ace.ui.switchMode('raw')
 
     const command = await ace.create(MakeHelperCommand, ['orderShipped'])
     await command.exec()
 
-    const stubs = await ace.app.stubs.create()
-    const stub = await stubs.build('make/helper/main.stub', {
-      source: stubsRoot,
-    })
+    command.assertLog('green(DONE:)    create app/helpers/order_shippeds_helper.ts')
+    await assert.fileContains(
+      'app/helpers/order_shippeds_helper.ts',
+      'export default class OrderShippedsHelper {'
+    )
+  })
 
-    const entity = ace.app.generators.createEntity('orderShipped')
-    const { contents } = await stub.prepare({
-      entity,
-      helper: { filePath: command.helpersPath(entity.name), name: command.helperName(entity.name) },
-    })
+  test('make an helper singular', async ({ fs, assert }) => {
+    const ace = await new AceFactory().make(fs.baseUrl, { importer: () => {} })
+    await ace.app.init()
+    ace.ui.switchMode('raw')
 
-    await assert.fileEquals('app/helpers/order_shipped.ts', contents)
+    const command = await ace.create(MakeHelperCommand, ['orderShipped', '-s'])
+    await command.exec()
 
-    assert.deepEqual(ace.ui.logger.getLogs(), [
-      {
-        message: 'green(DONE:)    create app/helpers/order_shipped.ts',
-        stream: 'stdout',
-      },
-    ])
+    command.assertLog('green(DONE:)    create app/helpers/order_shipped_helper.ts')
+    await assert.fileContains(
+      'app/helpers/order_shipped_helper.ts',
+      'export default class OrderShippedHelper {'
+    )
   })
 })
