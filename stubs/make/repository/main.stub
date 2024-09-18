@@ -1,5 +1,5 @@
 {{{
-  exports({ to: repository.filePath })
+  exports({ to: cmd.filePath })
 }}}
-export default class {{ repository.name }} {
+export default class {{ cmd.name }} {
 }

@@ -1,5 +1,5 @@
 {{{
-  exports({ to: presenter.filePath })
+  exports({ to: cmd.filePath })
 }}}
-export default class {{ presenter.name }} {
+export default class {{ cmd.name }} {
 }

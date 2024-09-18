@@ -1,5 +1,5 @@
 {{{
-  exports({ to: action.filePath })
+  exports({ to: cmd.filePath })
 }}}
-export default class {{ action.name }} {
+export default class {{ cmd.name }} {
 }

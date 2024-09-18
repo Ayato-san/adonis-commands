@@ -1,5 +1,5 @@
 {{{
-  exports({ to: enumeration.filePath })
+  exports({ to: cmd.filePath })
 }}}
-export const {{ enumeration.name }} = {
+export const {{ cmd.name }} = {
 } as const
