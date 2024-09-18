@@ -10,7 +10,7 @@ import { args, flags } from '@adonisjs/core/ace'
 import type { CommandOptions } from '@adonisjs/core/types/ace'
 import StringBuilder from '@poppinss/utils/string_builder'
 
-import AbstractMakeCommand from './abstract.js'
+import AbstractMakeCommand from '../../src/make/abstract.js'
 
 /** Command class for creating a new repository */
 export default class MakeRepository extends AbstractMakeCommand {
