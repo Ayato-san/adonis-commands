@@ -1,0 +1,12 @@
+{{#var controllerName = generators.controllerName(entity.name, true)}}
+{{#var controllerFileName = generators.controllerFileName(entity.name)}}
+{{{
+  exports({ to: cmd.filePath })
+}}}
+import type { InferPageProps } from '@adonisjs/inertia/types'
+
+import type {{ controllerName }} from '#controllers/{{entity.path!=="./"?entity.path+"/":""}}{{ controllerFileName.replace('.ts','') }}'
+
+export default function {{ cmd.name }}(props: InferPageProps<{{ controllerName }}, 'handle'>) {
+  return <></>
+}

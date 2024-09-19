@@ -1,0 +1,6 @@
+{{{  
+  exports({ to: cmd.filePath })
+}}}
+export default function {{ cmd.name }}() {
+  return <></>
+}

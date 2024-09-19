@@ -51,4 +51,17 @@ function hasLucid() {
   return isPackageExists('@adonisjs/lucid') // Check for AdonisJS Lucid package
 }
 
-export { hasLibSQL, hasLucid, hasMSSQL, hasMySQL, hasPostgreSQL, hasSQLite }
+/** Check if Inertia package is installed */
+function hasInertia() {
+  return isPackageExists('@adonisjs/inertia') // Check for AdonisJS Inertia package
+}
+
+/** Check if React package is installed */
+function hasReact() {
+  return (
+    isPackageExists('@inertiajs/react') && // Check for Inertia React adapter package
+    isPackageExists('react') // Check for React package
+  )
+}
+
+export { hasInertia, hasLibSQL, hasLucid, hasMSSQL, hasMySQL, hasPostgreSQL, hasReact, hasSQLite }

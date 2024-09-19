@@ -49,7 +49,7 @@ export default abstract class AbstractMakeCommand extends BaseCommand {
     const codemods = await this.createCodemods()
     /** Use the stub to create the action file */
     await codemods.makeUsingStub(stubsRoot, `make/${this.stubPath}/main.stub`, {
-      entity: this.app.generators.createEntity(this.name),
+      entity,
       cmd: { filePath, name },
     })
   }

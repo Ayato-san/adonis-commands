@@ -57,8 +57,10 @@
   "devDependencies": {
     "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/core": "^6.13.1",
+    "@adonisjs/inertia": "^1.2.1",
     "@adonisjs/lucid": "^21.2.0",
     "@ayato-san/tooling-configs": "^2.0.4",
+    "@inertiajs/react": "^1.2.0",
     "@japa/assert": "^3.0.0",
     "@japa/expect-type": "^2.0.2",
     "@japa/file-system": "^2.3.0",
@@ -71,6 +73,7 @@
     "del-cli": "^5.1.0",
     "eslint": "^9.10.0",
     "prettier": "^3.3.3",
+    "react": "^18.3.1",
     "release-it": "^17.6.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.6.2"

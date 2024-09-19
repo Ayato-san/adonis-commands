@@ -1,0 +1,11 @@
+{{{  
+  exports({ to: cmd.filePath })
+}}}
+import type { SharedProps } from '@adonisjs/inertia/types'
+import { usePage } from '@inertiajs/react'
+
+export default function {{ cmd.name }}() {
+  const {} = usePage<SharedProps>().props
+
+  return <></>
+}
