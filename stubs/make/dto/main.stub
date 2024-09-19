@@ -1,0 +1,10 @@
+{{{
+  exports({ to: cmd.filePath })
+}}}
+export default class {{ cmd.name }} {
+  constructor(){}
+
+  static fromX(value){
+    new this(value)
+  }
+}

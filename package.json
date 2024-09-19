@@ -58,7 +58,7 @@
     "@adonisjs/assembler": "^7.8.2",
     "@adonisjs/core": "^6.13.1",
     "@adonisjs/lucid": "^21.2.0",
-    "@ayato-san/tooling-configs": "^2.0.2",
+    "@ayato-san/tooling-configs": "^2.0.4",
     "@japa/assert": "^3.0.0",
     "@japa/expect-type": "^2.0.2",
     "@japa/file-system": "^2.3.0",
