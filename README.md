@@ -1,18 +1,39 @@
-<p align="center">
+<div align="center">
   <img src="https://github.com/Ayato-san/adonis-commands/assets/71392060/cd36b965-5a4f-481a-bf64-8f357c6e5689">
-</p>
+  <h1>Adonis Commands</h1>
+  <p>My custom commands for AdoniJS</p>
+  <div>
+    <a href="https://github.com/Ayato-san/adonis-commands/blob/main/LICENSE.md"><img alt="GitHub License" src="https://img.shields.io/github/license/Ayato-san/adonis-commands?style=for-the-badge"></a>
+    <a href="#"><img alt="NPM Version" src="https://img.shields.io/github/package-json/version/Ayato-san/adonis-commands?style=for-the-badge"></a>
+    <a href="https://github.com/Ayato-san/adonis-commands/stargazers"><img alt="GitHub Stars" src="https://img.shields.io/github/stars/Ayato-san/adonis-commands?style=for-the-badge"></a>
+    <a href="#"><img alt="GitHub Top Language" src="https://img.shields.io/github/languages/top/Ayato-san/adonis-commands?style=for-the-badge"></a>
+  </div>
+</div>
 
 ## Features
 
 - Designed to work with AdonisJS, his packages lucid and bouncer out of the box
 - add / modify Adonis commands
 
-### Install
+### Installation
 
-```bash
-npm i -D @ayato-san/adonis-commands
-node ace configure @ayato-san/adonis-commands
-```
+- with npm
+  ```sh
+  npm install -D @ayato-san/adonis-commands
+  node ace configure @ayato-san/adonis-commands
+  ```
+
+- with pnpm
+  ```sh
+  pnpm install -D @ayato-san/adonis-commands
+  node ace configure @ayato-san/adonis-commands
+  ```
+
+- with yarn
+  ```sh
+  yarn add -D @ayato-san/adonis-commands
+  node ace configure @ayato-san/adonis-commands
+  ```
 
 ### Commands
 
